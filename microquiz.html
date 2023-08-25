@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MICROPROCESSOR Quiz</title>
+    <link rel = "stylesheet" href = "microquiz.css">
+</head>
+
+<body>
+    <h4 style="color:blue;position:absolute;left:70%;top:5%;" align="center" >
+        <span id="timer">Time Remaining(in seconds): </span><br/><span id='counter' style="font-size:25px;"></span></h4>
+
+    <div class="quiz-container" id="quiz">
+        <div class="quiz-header">
+          <h2 id="question">Question Text</h2>
+          <ul>
+            <li>
+              <input type="radio" name="answer" id="a" class="answer">
+              <label for="a" id="a_text">Answer</label>
+            </li>
+            <li>
+              <input type="radio" name="answer" id="b" class="answer">
+              <label for="b" id="b_text">Answer</label>
+            </li>
+            <li>
+              <input type="radio" name="answer" id="d" class="answer">
+              <label for="d" id="d_text">Answer</label>
+            </li>
+            <li>
+              <input type="radio" name="answer" id="c" class="answer">
+              <label for="c" id="c_text">Answer</label>
+            </li>
+          </ul>
+        </div>
+        <button id="submit">Submit</button>
+      </div>
+<script>
+    const quizData = [
+    {
+    question: "What is Microprocessor?",
+        a: "A multipurpose PLD that accepts binary data as input",
+        b: "A multipurpose PLD that accepts an integer as input",
+        c: "A multipurpose PLD that accepts whole numbers as input",
+        d: "A multipurpose PLD that accepts prime numbers as input",
+        correct: "a",
+    },
+    {
+        question: "The microprocessor of a computer can operate on any information if it is present in ______________ only.",
+        a: "Secondary Memory",
+        b: "Main Memory",
+        c: "Flag",
+        d: "Program Counter",
+        correct: "b",
+    },
+    {
+        question: "Which of the following addressing method does the instruction, MOV AX,[BX] represent?",
+        a: "register relative addressing mode",
+        b: "register addressing mode",
+        c: "direct addressing mode",
+        d: "register indirect addressing mode",
+        correct: "d",
+    },
+    {
+        question: " In 8-bit microprocessor, how many opcodes are present?",
+        a: "256",
+        b: "250",
+        c: "246",
+        d: "278",
+        correct: "c",
+    },
+];
+const quiz= document.getElementById('quiz')
+const answerEls = document.querySelectorAll('.answer')
+const questionEl = document.getElementById('question')
+const a_text = document.getElementById('a_text')
+const b_text = document.getElementById('b_text')
+const d_text = document.getElementById('d_text')
+const c_text = document.getElementById('c_text')
+const submitBtn = document.getElementById('submit')
+let currentQuiz = 0
+let score = 0
+loadQuiz()
+function loadQuiz() {
+    deselectAnswers()
+    const currentQuizData = quizData[currentQuiz]
+    questionEl.innerText = currentQuizData.question
+    a_text.innerText = currentQuizData.a
+    b_text.innerText = currentQuizData.b
+    d_text.innerText = currentQuizData.d
+    c_text.innerText = currentQuizData.c
+}
+function deselectAnswers() {
+    answerEls.forEach(answerEl => answerEl.checked = false)
+}
+function getSelected() {
+    let answer
+    answerEls.forEach(answerEl => {
+        if(answerEl.checked) {
+            answer = answerEl.id
+        }
+    })
+    return answer
+}
+submitBtn.addEventListener('click', () => {
+    const answer = getSelected()
+    if(answer) {
+       if(answer === quizData[currentQuiz].correct) {
+           score++
+       }
+       currentQuiz++
+       if(currentQuiz < quizData.length) {
+           loadQuiz()
+       } else {
+           quiz.innerHTML = `
+           <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+           <button onclick="location.reload()">Reload</button>
+           `
+       }
+    }
+})
+function countdown() {
+        var seconds = 300;
+        function tick() {
+          var counter = document.getElementById("counter");
+          seconds--;
+          counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+          if (seconds > 0) {
+            setTimeout(tick, 1000);
+          } else {
+            alert("Sorry you cannot proceed..Timeout")
+          }
+        }
+        tick();
+      }
+      countdown();
+</script>    
+
+</body>
+</html>

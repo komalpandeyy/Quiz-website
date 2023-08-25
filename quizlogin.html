@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel = "stylesheet" href = "quizlogin.css">
+</head>
+<body>
+    <h1>Login Page</h1><br>    
+    <div class="login">    
+    <form id="login" method="get" action="login.html">    
+        <label><b>Username     
+        </b>    
+        </label>    
+        <input type="text" name="Uname" id="Uname" placeholder="Username" >    
+        <br><br>    
+        <label><b>Password     
+        </b>    
+        </label>    
+        <input type="Password" name="Pass" id="Pass" placeholder="Password" >    
+        <br><br>    
+        <input type="submit" name="log" id="log" value="Log In Here" onclick="validate()">       
+        <br><br>    
+        <input type="checkbox" id="check">    
+        <rm>Remember me</rm>    
+        <br><br>
+        <a href="#">Forgot Password</a> 
+        <br>
+        <a href="register.html">Register</a>
+    </form>   
+    
+    <script>
+        function validate()
+        {
+            var f = document.querySelector("form");
+            var u = f.Uname.value;
+            if(u.length > 20 || u.length == 0)
+                alert("Username is invalid");  
+        }
+    </script>
+</div>  
+</body>
+</html>
