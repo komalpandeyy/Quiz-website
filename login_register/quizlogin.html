@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel = "stylesheet" href = "quizlogin.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+          <h2>Login</h2>
+          <form>
+            <input type="text" id="username" name="username" placeholder="Username" >
+            <input type="password" id="password" name="password" placeholder="Password">
+            <div class="btns">
+            <button type="button" onclick="validate()">Login</button>
+            <button type="button" onclick="goToRegister()">Not Registered yet</button>
+        </div>
+          </form>
+        </div>
+      </div>
+    
+    <script>
+        function validate()
+        {
+            var f = document.querySelector("form");
+            var u = f.username.value;
+            if(u.length > 20 || u.length == 0){
+                alert("Username is invalid"); 
+            } 
+            else{
+                // alert("i m working");
+                window.location.href="../index.html"
+            }
+        }
+
+        function goToRegister(){
+            const ans = confirm("Do you want to continue to register");
+            if(ans)
+                window.location.href = "register.html";
+            
+        }
+    </script>
+</body>
+</html>

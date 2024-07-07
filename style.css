@@ -1,83 +1,68 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: Century Gothic;
+body{
+    background-color: #FDF5DF;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+header,footer{
+    background-color: #e7c66b;
+}
+.gallery {
+    background-image: url('./images/q2.jpg');
+    background-size: 100% 100%;
+    box-shadow: 1px 2px 10px white;
+    animation: slider 10s infinite ease-in-out;
 }
 
-header{
-    background-image: linear-gradient( rgba(0,0,0,0.5),rgba(0,0,0,0.5) ) , url(https://img.freepik.com/premium-vector/quiz-logo-with-speech-bubble-symbols-concept-questionnaire-show-sing-quiz-button-question-competition-exam-interview-modern-emblem_686498-55.jpg?w=2000);
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-}
 
-ul{
-    float: right;
-    list-style-type: none;
-    margin-top: 25px;
-}
-
-ul li{
+button {
+    border-radius: 4px;
+    background-color: #4CAF50;
+    border: none;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bolder;
+    padding: 6px;
+    width: 140px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+  }
+  
+  button{
+    cursor: pointer;
     display: inline-block;
-}
-
-ul li a{
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 20px;
-    border: 1px solid #fff;
-    transition: 0.6s ease;
-}
-
-ul li a:hover{
-    background-color: #fff;
-    color: #000;
-}
-
-ul li.active a{
-    background-color: #fff;
-    color: #000;
-}
-
-.logo img{
-    float: left;
-    width: 150px;
-    height: auto;
-}
-
-.main{
-    max-width: 1200px;
-    margin: auto;
-}
-
-.title{
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  button:after {
+    content: '»';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    opacity: 0;  
+    top: 14px;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  button:hover{
+    padding-right: 24px;
+    padding-left:8px;
+    background-color: #4f8f50;
+  }
+  
+  button:hover:after {
+    opacity: 1;
+    right: 10px;
+  }
+
+@keyframes slider {
+    /* 0% {background-image: url("./images/q1.jpg");} */
+    0% {background-image: url("./images/q2.jpg");}
+    35% {background-image: url("./images/logo.jpg");}
+    75% {background-image: url("./images/main.jpg");}
 }
 
-.title h1{
-    color: #fff;
-    font-size: 70px;
-}
-
-.button{
-    position: absolute;
-    top: 62%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-
-.btn{
-    border: 1px solid #fff;
-    padding: 10px 30px;
-    color: #fff;
-    text-decoration: none;
-    transition: 0.6s ease;
-}
-
-.btn hover{
-    background-color: #fff;
-    color: #000;
-}

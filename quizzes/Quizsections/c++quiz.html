@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Quiz</title>
+    
+    <link rel = "stylesheet" href = "c++quiz.css">
+</head>
+
+<body>
+  <h4 style="color:#5EBEC4;position:absolute;left:70%;top:7%;font-weight: bolder;" align="center" >
+        <span id="timer">Time Remaining(in seconds): </span><br/><span id='counter' style="font-size:25px;"></span></h4>
+
+    <div class="quiz-container" id="quiz">
+        <div class="quiz-header">
+          <h2 id="question">Question Text</h2>
+          <ul>
+            <li>
+              <input type="radio" name="answer" id="d" class="answer">
+              <label for="d" id="d_text">Answer</label>
+            </li>
+            <li>
+              <input type="radio" name="answer" id="c" class="answer">
+              <label for="c" id="c_text">Answer</label>
+            </li>
+            <li>
+              <input type="radio" name="answer" id="b" class="answer">
+              <label for="b" id="b_text">Answer</label>
+            </li>
+            <li>
+              <input type="radio" name="answer" id="a" class="answer">
+              <label for="a" id="a_text">Answer</label>
+            </li>
+          </ul>
+        </div>
+        <button id="submit">Submit</button>
+      </div>
+<script>
+    const quizData = [
+    {
+    question: "Who invented C++?",
+        a: "Dennis Ritchie",
+        b: "Ken Thompson",
+        c: "Brian Kernighan",
+        d: "Bjarne Stroustrup",
+        correct: "d",
+    },
+    {
+    question: " Which of the following user-defined header file extension used in c++?",
+        a: "hg",
+        b: "cpp",
+        c: "h",
+        d: "hf",
+        correct: "c",
+    },
+    {
+    question: "Which of the following is a correct identifier in C++?",
+        a: "$var_name",
+        b: "VAR_1234",
+        c: "7VARNAME",
+        d: "7var_name",
+        correct: "b",
+    },
+    {
+    question: "Which of the following is not a type of Constructor in C++?",
+        a: "Friend constructor",
+        b: "Default constructor",
+        c: "Parameterized constructor",
+        d: "Copy constructor",
+        correct: "a",
+    },
+    
+];
+const quiz= document.getElementById('quiz')
+const answerEls = document.querySelectorAll('.answer')
+const questionEl = document.getElementById('question')
+const d_text = document.getElementById('d_text')
+const c_text = document.getElementById('c_text')
+const b_text = document.getElementById('b_text')
+const a_text = document.getElementById('a_text')
+const submitBtn = document.getElementById('submit')
+let currentQuiz = 0
+let score = 0
+loadQuiz()
+function loadQuiz() {
+    deselectAnswers()
+    const currentQuizData = quizData[currentQuiz]
+    questionEl.innerText = currentQuizData.question
+    d_text.innerText = currentQuizData.d
+    c_text.innerText = currentQuizData.c
+    b_text.innerText = currentQuizData.b
+    a_text.innerText = currentQuizData.a
+}
+function deselectAnswers() {
+    answerEls.forEach(answerEl => answerEl.checked = false)
+}
+function getSelected() {
+    let answer
+    answerEls.forEach(answerEl => {
+        if(answerEl.checked) {
+            answer = answerEl.id
+        }
+    })
+    return answer
+}
+submitBtn.addEventListener('click', () => {
+    const answer = getSelected()
+    if(answer) {
+       if(answer === quizData[currentQuiz].correct) {
+           score++
+       }
+       currentQuiz++
+       if(currentQuiz < quizData.length) {
+           loadQuiz()
+       } else {
+           quiz.innerHTML = `
+           <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+           <button onclick="location.reload()">Reload</button>
+           `
+       }
+    }
+})
+function countdown() {
+        var seconds = 30;
+        function tick() {
+          var counter = document.getElementById("counter");
+          seconds--;
+          counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+          if (seconds > 0) {
+            setTimeout(tick, 1000);
+          } else {
+            alert("Sorry you cannot proceed..Timeout");
+            window.location.href="../quizzes.html";
+          }
+        }
+        tick();
+      }
+      countdown();
+</script>    
+
+</body>
+</html>
